@@ -5,7 +5,7 @@ function makeGrid (rows) {
     container.style.setProperty("--grid-cols", rows);
     for (let i = 0; i < (rows * rows); i++) {
         let cell = document.createElement("div");
-        cell.addEventListener("mouseout", function () {
+        cell.addEventListener("mouseenter", function () {
             if (randColor) {
             const randomColor = Math.floor(Math.random()*16777215).toString(16);
             this.style.backgroundColor = "#" + randomColor;
@@ -46,6 +46,8 @@ let randColor = true;
 const randColorBtn = document.getElementById("random-color");
 randColorBtn.addEventListener('click', function () {
     randColor = !randColor;
+    if (randColor == true) randColorBtn.textContent = "Random Colors";
+    else randColorBtn.textContent = "Black";
 })
 
 const container = document.getElementById("container");
