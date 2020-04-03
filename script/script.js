@@ -6,9 +6,14 @@ function makeGrid (rows) {
     for (let i = 0; i < (rows * rows); i++) {
         let cell = document.createElement("div");
         cell.addEventListener("mouseout", function () {
+            if (randColor) {
             const randomColor = Math.floor(Math.random()*16777215).toString(16);
             this.style.backgroundColor = "#" + randomColor;
-        });
+        } else {
+            this.style.backgroundColor = "black";
+        }
+
+    });
         container.appendChild(cell).className = "cell";
     }
 }
@@ -36,6 +41,12 @@ function clearGrid () {
     container.innerHTML = "";
     makeGrid(newSize);
 }
+
+let randColor = true;
+const randColorBtn = document.getElementById("random-color");
+randColorBtn.addEventListener('click', function () {
+    randColor = !randColor;
+})
 
 const container = document.getElementById("container");
 makeGrid(10);
